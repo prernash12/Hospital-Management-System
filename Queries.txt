@@ -1,0 +1,29 @@
+Query for Patients Table:
+
+CREATE TABLE patients (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    age INT NOT NULL,
+    gender ENUM('male', 'female', 'other') NOT NULL
+);
+
+
+Query for Appointments table:
+
+CREATE TABLE appointments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    patient_id INT NOT NULL,
+    doctor VARCHAR(100) NOT NULL,
+    date DATE NOT NULL,
+    FOREIGN KEY (patient_id) REFERENCES patients(id)
+);
+
+Query for Invoice Table:
+
+CREATE TABLE invoices (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    appointment_id INT NOT NULL,
+    problem_name VARCHAR(255) NOT NULL,
+    billing_amount DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (appointment_id) REFERENCES appointments(id)
+);
